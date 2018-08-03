@@ -66,19 +66,21 @@ function sendXml(){
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 			var table_new = this.responseText;
-			if (document.getElementById('grid') != null){
-				document.getElementById('table_add').innerHTML = '';
-				var table_new_split = table_new.split('|-_-|');
-				console.log(table_new_split);
-				document.getElementById('table_add').innerHTML = table_new_split[0];
+			console.log(table_new);
+			if (table_new != false){
+				if (document.getElementById('grid') != null){
+					document.getElementById('table_add').innerHTML = '';
+					var table_new_split = table_new.split('|-_-|');
+					document.getElementById('table_add').innerHTML = table_new_split[0];
 
-				document.getElementsByClassName('report')[0].innerHTML = '';
-				document.getElementsByClassName('report')[0].innerHTML = "<span>Удалено: "+table_new_split[1]+"</span><span class='ml-15'>Обновлено: "+table_new_split[2]+"</span><span class='ml-15'>Обработано: "+table_new_split[3]+"</span>";
-			} else {
-				document.getElementById('table_add').innerHTML = table_new;
+					document.getElementsByClassName('report')[0].innerHTML = '';
+					document.getElementsByClassName('report')[0].innerHTML = "<span>Удалено: "+table_new_split[1]+"</span><span class='ml-15'>Обновлено: "+table_new_split[2]+"</span><span class='ml-15'>Обработано: "+table_new_split[3]+"</span>";
+				} else {
+					document.getElementById('table_add').innerHTML = table_new;
+				}
+				sort();
+				pagination();
 			}
-			sort();
-			pagination();
 		}
 	}
 }

@@ -144,6 +144,6 @@
 		}
 		mysqli_close($handle);
 	} else {
-		echo("Error");
+		echo false;
 	}
 ?>
